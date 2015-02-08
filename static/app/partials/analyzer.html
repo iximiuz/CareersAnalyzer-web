@@ -1,0 +1,30 @@
+<div>
+    <h5>Select one or more skills to see related skills:</h5>
+    <tags-input ng-model="skills"
+                placeholder="Type skills here..."
+                display-property="name"
+                add-on-space="true"
+                min-length="1"
+                add-from-autocomplete-only="true"
+                on-tag-added="analyze()"
+                on-tag-removed="analyze()">
+        <auto-complete source="loadSkills($query)" min-length="1"></auto-complete>
+    </tags-input>
+    <div layout="row">
+        <div flex>
+            <h5>Related skills ({{ relatedSkills.length }}):</h5>
+            <ul class="skills-list">
+                <li ng-repeat="s in relatedSkills | orderBy:'count':true" class="skills-list-item">
+                    <span class="skill-tag">{{ s.name }}</span>
+                    <span class="skill-tag-count">&nbsp;x&nbsp;{{ s.count }}</span>
+                </li>
+            </ul>
+        </div>
+        <div flex>
+            <h5>Jobs for selected skills ({{ jobs.length }}):</h5>
+            <ul class="jobs-list">
+                <li ng-repeat="j in jobs"><a ng-href="{{ j.url }}" target="_blank">{{ j.name }}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

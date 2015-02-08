@@ -1,0 +1,8 @@
+{
+  "name": "CareersAnalyzerWeb",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.3.12",
+    "angular-material": "~0.7.1"
+  }
+}
