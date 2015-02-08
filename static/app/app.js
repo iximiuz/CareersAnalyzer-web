@@ -15,8 +15,8 @@ app.directive('popularSkills', ['$http', '$rootScope', function($http, $rootScop
                 scope.skills = (response || {}).data || [];
             });
 
-            scope.selectSkill = function(skillId) {
-                $rootScope.$emit('popular skill selected', skillId);
+            scope.selectSkill = function(skill) {
+                $rootScope.$emit('popular skill selected', skill);
             };
         },
         templateUrl: '/static/app/partials/popular-skills.html'
@@ -32,8 +32,14 @@ app.directive('analyzer', ['$http', '$rootScope', function($http, $rootScope) {
             scope.skills = [];
             scope.jobs = [];
             scope.relatedSkills = [];
+
             scope.loadSkills = function(query) {
                  return $http.get('/api/skills?q=' + query);
+            };
+
+            scope.selectSkill = function(skill) {
+                scope.skills.push(skill);
+                scope.analyze();
             };
 
             scope.analyze = function(force) {
@@ -58,6 +64,11 @@ app.directive('analyzer', ['$http', '$rootScope', function($http, $rootScope) {
                         }
                     });
             };
+
+            $rootScope.$on('popular skill selected', function(event, skill) {
+                scope.skills = [skill];
+                scope.analyze();
+            });
 
             scope.analyze(true);
         },
