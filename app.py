@@ -21,7 +21,6 @@ app.config.from_object(Config())
 def index():
     return render_template('index.html')
 
-
+from api import *
 if __name__ == '__main__':
-    from api import *
     app.run(port=5000, threaded=True, debug=True)
