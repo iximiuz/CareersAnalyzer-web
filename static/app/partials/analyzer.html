@@ -12,7 +12,7 @@
     </tags-input>
     <div layout="row">
         <div flex>
-            <h5>Related skills ({{ relatedSkills.length }}):</h5>
+            <h5>Skills required along with selected skills ({{ relatedSkills.length }}):</h5>
             <ul class="skills-list">
                 <li ng-repeat="s in relatedSkills | orderBy:'count':true" class="skills-list-item" ng-click="selectSkill(s)">
                     <span class="skill-tag">{{ s.name }}</span>
